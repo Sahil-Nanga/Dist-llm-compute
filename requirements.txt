@@ -1,0 +1,25 @@
+# Core networking
+pyzmq>=25.1.0
+zeroconf>=0.115.2
+
+# FastAPI backend
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+aiofiles>=23.2.0
+python-multipart>=0.0.9
+httpx>=0.27.0
+
+# System profiling
+psutil>=5.9.8
+
+# Numerical computing
+numpy>=1.26.0
+
+# GGUF model support
+gguf>=0.6.0
+
+# Serialization
+msgpack>=1.0.7
+
+# Async utilities
+anyio>=4.3.0

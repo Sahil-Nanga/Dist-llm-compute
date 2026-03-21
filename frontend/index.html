@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralCluster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <div class="titlebar">
+    <div class="titlebar-left">
+      <div class="app-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect width="22" height="22" rx="6" fill="url(#iconG)"/>
+          <path d="M6.5 11.5L10 15L15.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="iconG" x1="0" y1="0" x2="22" y2="22">
+              <stop offset="0%" stop-color="#0A84FF"/>
+              <stop offset="100%" stop-color="#34C759"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="app-name">NeuralCluster</span>
+    </div>
+
+    <nav class="tab-bar">
+      <button class="tab active" id="tabChat" onclick="switchTab('chat')">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <path d="M14 2H2C1.45 2 1 2.45 1 3V11C1 11.55 1.45 12 2 12H5.5L8 15L10.5 12H14C14.55 12 15 11.55 15 11V3C15 2.45 14.55 2 14 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        Chat
+      </button>
+      <button class="tab" id="tabCluster" onclick="switchTab('cluster')">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="2.5" cy="4" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="13.5" cy="4" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="2.5" cy="12" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="13.5" cy="12" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M4 4.5L5.8 6.5M12 4.5L10.2 6.5M4 11.5L5.8 9.5M12 11.5L10.2 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Cluster
+      </button>
+    </nav>
+
+    <div class="titlebar-right">
+      <div class="status-chip" id="statusChip">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Idle</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="tab-panel active" id="panelChat">
+    <div class="chat-layout">
+
+      <div class="chat-main">
+        <div class="model-banner" id="modelBanner">
+          <div class="model-dot" id="modelDot"></div>
+          <span class="model-name" id="modelNameLabel">No model loaded</span>
+          <span class="model-meta" id="modelMetaLabel"></span>
+        </div>
+
+        <div class="messages" id="messages">
+          <div class="welcome-screen">
+            <div class="welcome-glyph">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                <rect width="52" height="52" rx="14" fill="#F2F7FF"/>
+                <path d="M16 26.5L23 33.5L36 19.5" stroke="#0A84FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h2 class="welcome-h">NeuralCluster</h2>
+            <p class="welcome-p">Distributed LLM inference across your local devices.<br>Go to <strong>Cluster</strong> to set up, then come back to chat.</p>
+          </div>
+        </div>
+
+        <div class="input-bar">
+          <div class="input-box">
+            <textarea id="chatInput" class="chat-input" placeholder="Message…" rows="1"
+              onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+            <div class="input-footer">
+              <div class="gen-params">
+                <label class="param-chip">
+                  <span>Temp</span>
+                  <input type="number" id="temperature" value="0.7" step="0.1" min="0" max="2" class="param-num" />
+                </label>
+                <label class="param-chip">
+                  <span>Top‑K</span>
+                  <input type="number" id="topK" value="40" min="1" max="200" class="param-num" />
+                </label>
+                <label class="param-chip">
+                  <span>Max</span>
+                  <input type="number" id="maxTokens" value="256" min="1" max="2048" class="param-num" />
+                </label>
+              </div>
+              <button class="send-btn" id="sendBtn" onclick="generate()" disabled title="Send (↵)">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 13V3M8 3L4 7M8 3L12 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p class="input-caption" id="inputCaption">Deploy a model from the Cluster tab to begin</p>
+        </div>
+      </div>
+
+      <aside class="device-sidebar">
+        <div class="sidebar-head">
+          <span class="sidebar-label">Devices</span>
+          <span class="badge-count" id="sidebarCount">0</span>
+          <button class="icon-btn" onclick="refreshWorkers()" title="Refresh devices">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+              <path d="M2.5 8C2.5 4.96 4.96 2.5 8 2.5C10.09 2.5 11.9 3.62 12.9 5.28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M13.5 8C13.5 11.04 11.04 13.5 8 13.5C5.91 13.5 4.1 12.38 3.1 10.72" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M13.5 4.5V2H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2.5 11.5V14H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="device-list" id="deviceList">
+          <p class="list-empty">No devices found.<br>Run a scan from Cluster.</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+
+  <div class="tab-panel" id="panelCluster">
+    <div class="cluster-grid">
+
+      <div class="cluster-col">
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-icon" style="background:#EBF5FF; color:#0A84FF;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 8H11M8 5V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Worker Discovery</h3>
+          </div>
+          <div class="card-body">
+            <div class="field-row">
+              <span class="field-label">Timeout</span>
+              <div class="field-inline">
+                <input type="number" id="discoverTimeout" value="15" min="5" max="60" class="num-field" />
+                <span class="field-unit">seconds</span>
+              </div>
+            </div>
+            <button class="btn-blue full" id="btnDiscover" onclick="discoverWorkers()">Scan for Workers</button>
+            <p class="card-caption">Broadcasts mDNS on your local network</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-icon" style="background:#F3EEFF; color:#AF52DE;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <rect x="2" y="2" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 6H11M5 8.5H8.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Model</h3>
+          </div>
+          <div class="card-body">
+            <div class="select-row">
+              <select id="modelSelect" class="select-field">
+                <option value="">Select a GGUF model…</option>
+              </select>
+              <button class="icon-btn" onclick="refreshModels()">↻</button>
+            </div>
+            <input type="text" id="modelPathInput" placeholder="Or paste a custom path…" class="text-field" style="margin-top:8px;" />
+            <button class="btn-purple full" id="btnLoad" onclick="loadModel()" style="margin-top:10px;">Analyse Model</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-icon" style="background:#EAFAF0; color:#34C759;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 12.5L8 3L13 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.2 9.5H10.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Deploy</h3>
+          </div>
+          <div class="card-body">
+            <button class="btn-green full" id="btnDeploy" onclick="deployModel()" disabled>Deploy to Cluster</button>
+            <p class="card-caption" id="deployHint">Analyse a model first</p>
+            <div class="divider"></div>
+            <button class="btn-ghost full" onclick="resetCluster()">Reset KV Cache</button>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="cluster-col">
+
+        <section class="card" id="modelInfoCard" style="display:none;">
+          <div class="card-head">
+            <div class="card-icon" style="background:#FFF3E8; color:#FF9500;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <rect x="2.5" y="1.5" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 5.5H11M5 8H11M5 10.5H8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Model Info</h3>
+            <span class="tok-badge" id="tokenizerBadge"></span>
+          </div>
+          <div class="card-body" style="padding:8px 16px 16px;">
+            <div id="modelMetaGrid" class="meta-chips"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-icon" style="background:#EBF5FF; color:#0A84FF;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <rect x="1" y="5" width="3.5" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/>
+                <rect x="6.25" y="3" width="3.5" height="10" rx="1" stroke="currentColor" stroke-width="1.3"/>
+                <rect x="11.5" y="6.5" width="3.5" height="4.5" rx="1" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M4.5 8H6.25M9.75 8H11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Layer Distribution</h3>
+          </div>
+          <div id="pipelineViz" class="pipeline-wrap">
+            <div class="pipeline-empty">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" opacity=".3">
+                <rect x="1" y="7" width="7" height="12" rx="2" stroke="#999" stroke-width="1.5"/>
+                <rect x="9.5" y="4" width="7" height="18" rx="2" stroke="#999" stroke-width="1.5"/>
+                <rect x="18" y="9" width="7" height="9" rx="2" stroke="#999" stroke-width="1.5"/>
+              </svg>
+              <span>Appears after model analysis</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-icon" style="background:#F5F5F7; color:#6E6E73;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <rect x="1" y="3" width="14" height="8.5" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5.5 14.5H10.5M8 11.5V14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="card-title">All Devices</h3>
+            <span class="badge-count" id="workerCount" style="margin-left:auto;">0</span>
+          </div>
+          <div class="card-body" style="padding:6px 12px 12px;">
+            <div id="deviceGrid" class="device-table">
+              <p class="list-empty" style="padding:12px 4px;">No devices yet — run a scan.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
