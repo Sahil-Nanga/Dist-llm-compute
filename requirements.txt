@@ -23,3 +23,6 @@ msgpack>=1.0.7
 
 # Async utilities
 anyio>=4.3.0
+# Optional — install on laptops/desktops for faster inference.
+# Not required on phones or embedded devices (NumPy fallback is used).
+# torch>=2.1.0  # uncomment and install via: pip install torch --index-url https://download.pytorch.org/whl/cpu

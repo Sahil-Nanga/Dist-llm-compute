@@ -1,3 +1,18 @@
+"""
+profiler.py — Dynamic Memory Profiler & Layer Assignment Engine.
+
+Responsibilities:
+  1. Parse GGUF binary headers to extract model architecture metadata
+     without loading the full weight tensor data into memory.
+  2. Query each device's available RAM via psutil.
+  3. Calculate the exact memory footprint of each transformer layer.
+  4. Run a greedy bin-packing algorithm to assign layers to devices,
+     producing a deterministic {device_id: [layer_indices]} mapping.
+
+This module contains ZERO hardcoded hardware assumptions. Every decision
+is driven by real-time system data and model metadata.
+"""
+
 from __future__ import annotations
 
 import struct
@@ -8,17 +23,20 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import psutil
 
-from config import RAM_SAFETY_MARGIN, MiB
+from config import RAM_SAFETY_MARGIN, RAM_OVERHEAD_BYTES, MiB
 
 log = logging.getLogger(__name__)
 
 
-GGUF_MAGIC    = 0x46554747
+                                                                               
+                                                                       
+
+GGUF_MAGIC    = 0x46554747                            
 GGUF_VERSION_1 = 1
 GGUF_VERSION_2 = 2
 GGUF_VERSION_3 = 3
 
-
+                                        
 class GGUFValueType:
     UINT8   = 0;  INT8   = 1
     UINT16  = 2;  INT16  = 3
@@ -28,32 +46,36 @@ class GGUFValueType:
     UINT64  = 10; INT64  = 11
     FLOAT64 = 12
 
-
+                                                    
+                                            
 GGUF_QUANT_SIZES: Dict[int, Tuple[int, int]] = {
-    0:  (1,  4),
-    1:  (1,  2),
-    2:  (32, 18),
-    3:  (32, 20),
-    6:  (32, 22),
-    7:  (32, 24),
-    8:  (32, 34),
-    9:  (1,  1),
-    10: (256, 82),
-    11: (256, 110),
-    12: (256, 144),
-    13: (256, 160),
-    14: (256, 176),
-    15: (256, 192),
-    16: (256, 210),
-    17: (256, 272),
-    18: (256, 36),
-    19: (256, 40),
-    20: (256, 54),
+    0:  (1,  4),         
+    1:  (1,  2),         
+    2:  (32, 18),         
+    3:  (32, 20),         
+    6:  (32, 22),         
+    7:  (32, 24),         
+    8:  (32, 34),         
+    9:  (1,  1),                   
+    10: (256, 82),        
+    11: (256, 110),         
+    12: (256, 144),         
+    13: (256, 160),                        
+    14: (256, 176),         
+    15: (256, 192),         
+    16: (256, 210),       
+    17: (256, 272),       
+    18: (256, 36),           
+    19: (256, 40),          
+    20: (256, 54),           
 }
 
 
+                                                                                
+
 @dataclasses.dataclass
 class GGUFMetadata:
+    """Parsed GGUF model metadata — no tensors, just the header info."""
     path: str
     architecture: str
     n_layers: int
@@ -64,9 +86,9 @@ class GGUFMetadata:
     context_length: int
     vocab_size: int
     n_tensors: int
-    dominant_quant_type: int
-    bytes_per_layer: int
-    total_weight_bytes: int
+    dominant_quant_type: int                                                
+    bytes_per_layer: int                                                       
+    total_weight_bytes: int                                                  
 
     def __repr__(self) -> str:
         return (
@@ -78,10 +100,11 @@ class GGUFMetadata:
 
 @dataclasses.dataclass
 class DeviceProfile:
+    """Snapshot of a device's available memory resources."""
     device_id: str
     total_ram_bytes: int
     available_ram_bytes: int
-    usable_ram_bytes: int
+    usable_ram_bytes: int                                   
 
     @property
     def available_mib(self) -> float:
@@ -94,11 +117,12 @@ class DeviceProfile:
 
 @dataclasses.dataclass
 class LayerAssignment:
-    assignment: Dict[str, List[int]]
-    device_profiles: Dict[str, DeviceProfile]
+    """Result of the layer-assignment algorithm."""
+    assignment: Dict[str, List[int]]                                         
+    device_profiles: Dict[str, DeviceProfile]                             
     model_metadata: GGUFMetadata
-    unassigned_layers: List[int]
-    pipeline_order: List[str]
+    unassigned_layers: List[int]                                              
+    pipeline_order: List[str]                                         
 
     @property
     def is_complete(self) -> bool:
@@ -119,7 +143,17 @@ class LayerAssignment:
         return "\n".join(lines)
 
 
+                                                                                 
+
 class GGUFParser:
+    """
+    Minimal streaming GGUF parser.
+
+    Reads only the fixed-size header + KV metadata section.
+    Does NOT load tensor data — this is intentional to keep memory use tiny
+    even for 70B models.
+    """
+
     def __init__(self, path: str | Path):
         self.path = Path(path)
         self._f = None
@@ -127,13 +161,18 @@ class GGUFParser:
         self._kv: Dict[str, Any] = {}
         self._tensor_infos: List[Dict] = []
 
+                                                                                
+
     def parse(self) -> GGUFMetadata:
         with open(self.path, "rb") as f:
             self._f = f
             self._read_header()
             self._read_kv_metadata()
             self._read_tensor_infos()
+
         return self._build_metadata()
+
+                                                                                
 
     def _read_u8(self)  -> int: return struct.unpack("<B",  self._f.read(1))[0]
     def _read_i8(self)  -> int: return struct.unpack("<b",  self._f.read(1))[0]
@@ -175,6 +214,8 @@ class GGUFParser:
             raise ValueError(f"Unknown GGUF value type: {vtype}")
         return fn()
 
+                                                                                
+
     def _read_header(self):
         magic   = self._read_u32()
         if magic != GGUF_MAGIC:
@@ -184,6 +225,7 @@ class GGUFParser:
         self._version   = self._read_u32()
         self._n_tensors = self._read_u64()
         self._n_kv      = self._read_u64()
+        log.debug("GGUF v%d — %d tensors, %d KV pairs", self._version, self._n_tensors, self._n_kv)
 
     def _read_kv_metadata(self):
         for _ in range(self._n_kv):
@@ -191,17 +233,21 @@ class GGUFParser:
             vtype = self._read_u32()
             value = self._read_value(vtype)
             self._kv[key] = value
+            log.debug("  KV: %s = %r", key, value if not isinstance(value, list) else f"[{len(value)} items]")
 
     def _read_tensor_infos(self):
         for _ in range(self._n_tensors):
             name   = self._read_string()
             n_dims = self._read_u32()
             dims   = [self._read_u64() for _ in range(n_dims)]
-            ttype  = self._read_u32()
-            offset = self._read_u64()
+            ttype  = self._read_u32()                      
+            offset = self._read_u64()                             
             self._tensor_infos.append({"name": name, "dims": dims, "type": ttype, "offset": offset})
 
+                                                                                
+
     def _get_kv(self, *keys, default=None) -> Any:
+        """Try multiple KV keys (different model families use different prefixes)."""
         for k in keys:
             if k in self._kv:
                 return self._kv[k]
@@ -232,7 +278,7 @@ class GGUFParser:
             "llama.feed_forward_length",
             default=None
         )
-        return int(val) if val is not None else int(emb_dim * 2.6875)
+        return int(val) if val is not None else int(emb_dim * 2.6875)                       
 
     def _get_n_heads(self, arch: str) -> int:
         return int(self._get_kv(
@@ -262,18 +308,37 @@ class GGUFParser:
         return int(self._get_kv("llama.vocab_size", default=32000))
 
     def _dominant_quant_type(self) -> int:
+        """Return the most common quantisation type used in transformer blocks."""
         from collections import Counter
+                                                                                  
         block_tensors = [t for t in self._tensor_infos if t["name"].startswith("blk.")]
         if not block_tensors:
+                                      
             block_tensors = self._tensor_infos
         if not block_tensors:
-            return 1
+            return 1               
         counter = Counter(t["type"] for t in block_tensors)
         return counter.most_common(1)[0][0]
 
     def _calculate_bytes_per_layer(self, arch: str, emb_dim: int, intermediate_dim: int,
                                     n_heads: int, n_kv_heads: int, quant_type: int) -> int:
+        """
+        Estimate the memory cost of a single transformer block.
+
+        LLaMA-style block contains:
+          - attn_norm:   (emb_dim,)
+          - attn_q:      (n_heads * head_dim, emb_dim)
+          - attn_k:      (n_kv_heads * head_dim, emb_dim)
+          - attn_v:      (n_kv_heads * head_dim, emb_dim)
+          - attn_output: (emb_dim, n_heads * head_dim)
+          - ffn_norm:    (emb_dim,)
+          - ffn_gate:    (intermediate_dim, emb_dim)
+          - ffn_up:      (intermediate_dim, emb_dim)
+          - ffn_down:    (emb_dim, intermediate_dim)
+        """
         head_dim = emb_dim // n_heads
+
+                                       
         n_q = n_heads * head_dim * emb_dim
         n_k = n_kv_heads * head_dim * emb_dim
         n_v = n_kv_heads * head_dim * emb_dim
@@ -281,16 +346,18 @@ class GGUFParser:
         n_gate = intermediate_dim * emb_dim
         n_up   = intermediate_dim * emb_dim
         n_down = emb_dim * intermediate_dim
-        n_norm = emb_dim * 2
+        n_norm = emb_dim * 2                                          
 
         weight_elements = n_q + n_k + n_v + n_o + n_gate + n_up + n_down
-        norm_bytes = n_norm * 4
+        norm_bytes = n_norm * 4                              
 
+                                                       
         block_size, type_size = GGUF_QUANT_SIZES.get(quant_type, (1, 2))
-        bpe = type_size / block_size
+        bpe = type_size / block_size                      
 
         weight_bytes = int(weight_elements * bpe)
-        return weight_bytes + norm_bytes
+        on_disk_bytes = weight_bytes + norm_bytes
+        return on_disk_bytes
 
     def _total_weight_bytes(self) -> int:
         total = 0
@@ -333,9 +400,16 @@ class GGUFParser:
         )
 
 
+                                                                                
+
 def get_local_device_profile(device_id: str = "master") -> DeviceProfile:
+    """
+    Snapshot the current system's memory using psutil.
+    This is called on BOTH master and workers to get live RAM figures.
+    """
     mem = psutil.virtual_memory()
-    usable = int(mem.available * RAM_SAFETY_MARGIN)
+    after_overhead = max(0, mem.available - RAM_OVERHEAD_BYTES)
+    usable = int(after_overhead * RAM_SAFETY_MARGIN)
     return DeviceProfile(
         device_id=device_id,
         total_ram_bytes=mem.total,
@@ -345,15 +419,35 @@ def get_local_device_profile(device_id: str = "master") -> DeviceProfile:
 
 
 def ram_bytes_from_report(report: dict) -> DeviceProfile:
+    """Re-hydrate a DeviceProfile from a dict received over the network."""
     return DeviceProfile(
         device_id=report["device_id"],
         total_ram_bytes=report["total_ram_bytes"],
         available_ram_bytes=report["available_ram_bytes"],
-        usable_ram_bytes=int(report["available_ram_bytes"] * RAM_SAFETY_MARGIN),
+        usable_ram_bytes=int(
+            max(0, report["available_ram_bytes"] - RAM_OVERHEAD_BYTES) * RAM_SAFETY_MARGIN
+        ),
     )
 
 
+                                                                                
+
 class LayerAssigner:
+    """
+    Greedy bin-packing layer assigner.
+
+    Algorithm:
+      1. Collect (device_id, usable_ram_bytes) for all devices, sorted
+         so devices with MORE RAM appear first.
+      2. Iterate through layers 0..N-1. For each layer, place it on the
+         current device if it fits. Otherwise advance to the next device.
+      3. Master always gets the first and/or last layers so it can handle
+         embedding + LM-head without extra round-trips.
+      4. Return the complete assignment plus a pipeline ordering.
+
+    This runs entirely from real-time psutil + GGUF data — no hardcoding.
+    """
+
     def __init__(self, metadata: GGUFMetadata, devices: Dict[str, DeviceProfile]):
         self.meta    = metadata
         self.devices = devices
@@ -363,12 +457,15 @@ class LayerAssigner:
         n_layers    = self.meta.n_layers
         assignment: Dict[str, List[int]] = {d: [] for d in self.devices}
 
+                                                                                 
+                                                                                 
         def sort_key(dev_id: str) -> Tuple[int, int]:
             priority = 0 if dev_id == "master" else 1
             return (priority, -self.devices[dev_id].usable_ram_bytes)
 
         ordered_devices = sorted(self.devices.keys(), key=sort_key)
 
+                                                        
         remaining: Dict[str, int] = {
             d: self.devices[d].usable_ram_bytes for d in ordered_devices
         }
@@ -379,6 +476,7 @@ class LayerAssigner:
 
         for layer_idx in range(n_layers):
             placed = False
+                                                                             
             while current_dev is not None:
                 if remaining[current_dev] >= bpl:
                     assignment[current_dev].append(layer_idx)
@@ -386,11 +484,14 @@ class LayerAssigner:
                     placed = True
                     break
                 else:
+                                            
                     current_dev = next(dev_iter, None)
 
             if not placed:
                 unassigned.append(layer_idx)
+                log.warning("Layer %d could not be assigned — insufficient RAM on all devices", layer_idx)
 
+                                                                               
         pipeline_order = [d for d in ordered_devices if assignment[d]]
 
         return LayerAssignment(
@@ -402,7 +503,10 @@ class LayerAssigner:
         )
 
 
+                                                                                
+
 def parse_model(model_path: str) -> GGUFMetadata:
+    """Parse GGUF metadata. Raises ValueError for non-GGUF files."""
     path = Path(model_path)
     if not path.exists():
         raise FileNotFoundError(f"Model not found: {model_path}")
@@ -418,6 +522,16 @@ def compute_layer_assignment(
     metadata: GGUFMetadata,
     device_profiles: Dict[str, DeviceProfile],
 ) -> LayerAssignment:
+    """
+    Given model metadata and a dict of live device profiles,
+    return the optimal layer assignment.
+
+    Args:
+        metadata:        Output from parse_model().
+        device_profiles: {device_id: DeviceProfile} — master + all connected workers.
+    Returns:
+        LayerAssignment with .is_complete flag and .summary() method.
+    """
     assigner = LayerAssigner(metadata, device_profiles)
     result   = assigner.assign()
     log.info("\n%s", result.summary())

@@ -29,9 +29,7 @@ from config import (
 log = logging.getLogger(__name__)
 
 
-
 def get_local_ip() -> str:
-    """Return the primary LAN IP of this machine (not 127.0.0.1)."""
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         s.connect(("8.8.8.8", 80))
@@ -43,25 +41,11 @@ def get_local_ip() -> str:
 
 
 class TensorTransport:
-    """
-    Lightweight numpy-array framing.
-
-    Wire format (bytes):
-      [4 bytes]  dtype string length  (uint32 LE)
-      [N bytes]  dtype string         (UTF-8)
-      [4 bytes]  number of dimensions (uint32 LE)
-      [8*ndim]   shape dims           (uint64 LE each)
-      [rest]     raw C-contiguous data
-
-    This format is ~3× faster than pickle for large float32 arrays
-    and avoids arbitrary code execution on deserialisation.
-    """
-
     @staticmethod
     def pack(arr: np.ndarray) -> bytes:
-        arr   = np.ascontiguousarray(arr)
-        dtype = arr.dtype.str.encode()        
-        ndim  = arr.ndim
+        arr = np.ascontiguousarray(arr)
+        dtype = arr.dtype.str.encode()
+        ndim = arr.ndim
         header = struct.pack("<I", len(dtype)) + dtype
         header += struct.pack("<I", ndim)
         header += struct.pack(f"<{ndim}Q", *arr.shape)
@@ -72,17 +56,15 @@ class TensorTransport:
         offset = 0
         dtype_len = struct.unpack_from("<I", data, offset)[0]; offset += 4
         dtype_str = data[offset:offset + dtype_len].decode(); offset += dtype_len
-        ndim      = struct.unpack_from("<I", data, offset)[0]; offset += 4
-        shape     = struct.unpack_from(f"<{ndim}Q", data, offset); offset += 8 * ndim
+        ndim = struct.unpack_from("<I", data, offset)[0]; offset += 4
+        shape = struct.unpack_from(f"<{ndim}Q", data, offset); offset += 8 * ndim
         arr = np.frombuffer(data[offset:], dtype=np.dtype(dtype_str)).reshape(shape)
-        return arr.copy()  
+        return arr.copy()
 
     @staticmethod
     def pack_dict(d: Dict[str, np.ndarray]) -> bytes:
-        """Serialise a {name: tensor} dict (used for layer weights)."""
         buf = io.BytesIO()
-        n = len(d)
-        buf.write(struct.pack("<I", n))
+        buf.write(struct.pack("<I", len(d)))
         for name, arr in d.items():
             name_b = name.encode()
             buf.write(struct.pack("<I", len(name_b)))
@@ -101,23 +83,16 @@ class TensorTransport:
             nlen = struct.unpack_from("<I", data, offset)[0]; offset += 4
             name = data[offset:offset + nlen].decode(); offset += nlen
             tlen = struct.unpack_from("<Q", data, offset)[0]; offset += 8
-            arr  = TensorTransport.unpack(data[offset:offset + tlen]); offset += tlen
+            arr = TensorTransport.unpack(data[offset:offset + tlen]); offset += tlen
             result[name] = arr
         return result
 
 
-
 class ZMQContext:
-    """
-    Singleton-style ZMQ context wrapper.
-    All sockets created here are tracked and closed via shutdown().
-    """
-
     def __init__(self, io_threads: int = 4):
         self._ctx = zmq.Context(io_threads)
         self._sockets: List[zmq.Socket] = []
         self._lock = threading.Lock()
-
 
     def _make(self, socket_type: int, **opts) -> zmq.Socket:
         s = self._ctx.socket(socket_type)
@@ -144,12 +119,6 @@ class ZMQContext:
         s.setsockopt(zmq.RCVHWM, hwm)
         return s
 
-    def router_socket(self, *, linger: int = 1000) -> zmq.Socket:
-        return self._make(zmq.ROUTER, linger=linger, router_mandatory=1)
-
-    def dealer_socket(self, *, linger: int = 1000) -> zmq.Socket:
-        return self._make(zmq.DEALER, linger=linger)
-
     def shutdown(self):
         log.info("ZMQContext: closing %d socket(s)", len(self._sockets))
         for s in self._sockets:
@@ -160,19 +129,9 @@ class ZMQContext:
         self._ctx.term()
 
 
-
 class ControlChannel:
-    """
-    Synchronous REQ/REP command channel.
-
-    Master side:   connect REQ to each worker's bound REP.
-    Worker side:   bind REP, call recv_command() in a loop.
-    """
-
-    ENCODING = "utf-8"
-
     def __init__(self, zmq_ctx: ZMQContext, is_server: bool):
-        self._ctx       = zmq_ctx
+        self._ctx = zmq_ctx
         self._is_server = is_server
         self._sock: Optional[zmq.Socket] = None
 
@@ -188,11 +147,9 @@ class ControlChannel:
         self._sock.connect(addr)
         log.info("Control channel connected to %s", addr)
 
-
     def recv_command(self) -> Tuple[bytes, Optional[dict]]:
-        """Blocking. Returns (command_bytes, payload_dict or None)."""
         frames = self._sock.recv_multipart()
-        cmd    = frames[0]
+        cmd = frames[0]
         payload = json.loads(frames[1]) if len(frames) > 1 else None
         return cmd, payload
 
@@ -205,36 +162,20 @@ class ControlChannel:
     def send_error(self, msg: str):
         self._sock.send_multipart([CMD_ERROR, msg.encode()])
 
-
     def send_command(self, cmd: bytes, payload: Optional[dict] = None) -> Tuple[bytes, Optional[dict]]:
-        """Send a command, block for ACK. Returns (response_cmd, response_data)."""
         frames = [cmd]
         if payload:
             frames.append(json.dumps(payload).encode())
         self._sock.send_multipart(frames)
         resp = self._sock.recv_multipart()
-        r_cmd     = resp[0]
+        r_cmd = resp[0]
         r_payload = json.loads(resp[1]) if len(resp) > 1 else None
         return r_cmd, r_payload
 
 
-
 class PipelineChannel:
-    """
-    PUSH/PULL channel for passing hidden-state tensors along the inference pipeline.
-
-    Each device:
-      • binds a PULL socket on its pipeline_in_port
-      • connects a PUSH socket to the NEXT device's pipeline_in_port
-
-    Data format on wire:
-      frame[0] = 8-byte request ID (uint64 LE)
-      frame[1] = packed tensor (TensorTransport.pack)
-      frame[2] = JSON metadata (token positions, etc.)
-    """
-
     def __init__(self, zmq_ctx: ZMQContext):
-        self._ctx  = zmq_ctx
+        self._ctx = zmq_ctx
         self._pull: Optional[zmq.Socket] = None
         self._push: Optional[zmq.Socket] = None
 
@@ -249,67 +190,97 @@ class PipelineChannel:
         log.info("Pipeline OUTPUT connected to %s:%d", host, port)
 
     def send(self, request_id: int, tensor: np.ndarray, meta: dict):
-        rid    = struct.pack("<Q", request_id)
-        tdata  = TensorTransport.pack(tensor)
-        mdata  = json.dumps(meta).encode()
+        rid = struct.pack("<Q", request_id)
+        tdata = TensorTransport.pack(tensor)
+        mdata = json.dumps(meta).encode()
         self._push.send_multipart([rid, tdata, mdata])
 
     def recv(self, timeout_ms: int = 60_000) -> Tuple[int, np.ndarray, dict]:
         if self._pull.poll(timeout_ms) == 0:
             raise TimeoutError("Pipeline recv timed out")
-        frames    = self._pull.recv_multipart()
+        frames = self._pull.recv_multipart()
         request_id = struct.unpack("<Q", frames[0])[0]
-        tensor     = TensorTransport.unpack(frames[1])
-        meta       = json.loads(frames[2])
+        tensor = TensorTransport.unpack(frames[1])
+        meta = json.loads(frames[2])
         return request_id, tensor, meta
 
 
-
 class WeightChannel:
-    """
-    PUSH/PULL channel for master → worker layer weight distribution.
-
-    Because weight tensors can be hundreds of MB, we use a dedicated
-    channel with high-watermark = 1 to avoid memory blow-up.
-
-    Wire format (single message):
-      frame[0] = JSON header: {layer_indices, n_chunks}
-      frame[1..n] = serialised weight dicts (one per layer, via TensorTransport.pack_dict)
-    """
-
     def __init__(self, zmq_ctx: ZMQContext):
-        self._ctx  = zmq_ctx
+        self._ctx = zmq_ctx
         self._pull: Optional[zmq.Socket] = None
         self._push: Optional[zmq.Socket] = None
 
     def bind_receiver(self, port: int = ZMQ_WEIGHT_PORT):
-        self._pull = self._ctx.pull_socket(hwm=2)
+        self._pull = self._ctx.pull_socket(hwm=1)
+        self._pull.setsockopt(zmq.RCVBUF, 32 * 1024 * 1024)
         self._pull.bind(f"tcp://*:{port}")
         log.info("Weight receiver bound on port %d", port)
 
     def connect_sender(self, host: str, port: int = ZMQ_WEIGHT_PORT):
-        self._push = self._ctx.push_socket(hwm=2)
+        self._push = self._ctx.push_socket(hwm=1)
+        self._push.setsockopt(zmq.SNDBUF, 32 * 1024 * 1024)
         self._push.connect(f"tcp://{host}:{port}")
         log.info("Weight sender connected to %s:%d", host, port)
 
     def send_layers(self, layer_indices: List[int], weights: List[Dict[str, np.ndarray]]):
-        """Send a list of layer weight dicts to a worker."""
-        header = json.dumps({"layer_indices": layer_indices}).encode()
-        frames = [header] + [TensorTransport.pack_dict(w) for w in weights]
-        self._push.send_multipart(frames)
-        log.info("Sent %d layer weight packages", len(weights))
+        names, dtypes, shapes = [], [], []
+        raw_frames = []
+        for w in weights:
+            for name, arr in w.items():
+                names.append(name)
+                dtypes.append(arr.dtype.str)
+                shapes.append(list(arr.shape))
+                raw_frames.append(arr.tobytes())
+
+        header = json.dumps({
+            "layer_indices": layer_indices,
+            "tensor_names":  names,
+            "tensor_dtypes": dtypes,
+            "tensor_shapes": shapes,
+        }).encode()
+
+        self._push.send_multipart([header] + raw_frames)
+        total_mib = sum(len(f) for f in raw_frames) / (1024 ** 2)
+        log.info("  -> layers %s  %.1f MiB  (%d tensors)",
+                 layer_indices, total_mib, len(raw_frames))
 
     def recv_layers(self, timeout_ms: int = 300_000) -> Tuple[List[int], List[Dict[str, np.ndarray]]]:
-        """Blocking. Returns (layer_indices, [weight_dict, ...])."""
         if self._pull.poll(timeout_ms) == 0:
             raise TimeoutError("Weight recv timed out waiting for master")
-        frames  = self._pull.recv_multipart()
-        header  = json.loads(frames[0])
-        indices = header["layer_indices"]
-        weights = [TensorTransport.unpack_dict(f) for f in frames[1:]]
-        log.info("Received weights for layers: %s", indices)
-        return indices, weights
 
+        frames = self._pull.recv_multipart()
+        header = json.loads(frames[0])
+
+        layer_indices = header["layer_indices"]
+        names = header["tensor_names"]
+        dtypes = header["tensor_dtypes"]
+        shapes = header["tensor_shapes"]
+
+        flat: Dict[str, np.ndarray] = {}
+        for i, name in enumerate(names):
+            raw = frames[i + 1]
+            dt = np.dtype(dtypes[i])
+            sh = tuple(shapes[i])
+            if sh:
+                arr = np.frombuffer(raw, dtype=dt).reshape(sh).copy()
+            else:
+                arr = np.frombuffer(raw, dtype=dt).copy()
+            flat[name] = arr
+
+        per_layer: Dict[int, Dict[str, np.ndarray]] = {li: {} for li in layer_indices}
+        for name, arr in flat.items():
+            for li in layer_indices:
+                if name.startswith(f"blk.{li}."):
+                    per_layer[li][name] = arr
+                    break
+            else:
+                per_layer[layer_indices[0]][name] = arr
+
+        result = [per_layer[li] for li in layer_indices]
+        total_mib = sum(a.nbytes for w in result for a in w.values()) / (1024 ** 2)
+        log.info("Received weights for layers: %s  (%.1f MiB)", layer_indices, total_mib)
+        return layer_indices, result
 
 
 @dataclass
@@ -322,11 +293,6 @@ class WorkerServiceInfo:
 
 
 class WorkerListener(ServiceListener):
-    """
-    Zeroconf callback listener.
-    Discovered worker services are pushed into self.queue.
-    """
-
     def __init__(self):
         self.queue: queue.Queue[WorkerServiceInfo] = queue.Queue()
         self.removed: queue.Queue[str] = queue.Queue()
@@ -335,7 +301,7 @@ class WorkerListener(ServiceListener):
         info = zc.get_service_info(service_type, name)
         if info is None:
             return
-        host  = socket.inet_ntoa(info.addresses[0]) if info.addresses else "127.0.0.1"
+        host = socket.inet_ntoa(info.addresses[0]) if info.addresses else "127.0.0.1"
         props = {k.decode(): v.decode() if isinstance(v, bytes) else v
                  for k, v in (info.properties or {}).items()}
         w = WorkerServiceInfo(
@@ -357,16 +323,6 @@ class WorkerListener(ServiceListener):
 
 
 class DeviceDiscovery:
-    """
-    Zeroconf-based mDNS discovery for the master node.
-
-    Usage:
-        discovery = DeviceDiscovery()
-        workers = discovery.discover(timeout=15.0)
-
-    Each item in workers is a WorkerServiceInfo instance.
-    """
-
     def __init__(self):
         self._zc = Zeroconf()
         self._listener = WorkerListener()
@@ -393,33 +349,26 @@ class DeviceDiscovery:
 
 
 class WorkerAnnouncer:
-    """
-    Zeroconf service registrar for worker nodes.
-
-    Registers a _llmdist._tcp.local. service so the master can find us.
-    Properties carry the device_id and port numbers the master will connect to.
-    """
-
     def __init__(self, device_id: str, host: Optional[str] = None):
         self._device_id = device_id
-        self._host      = host or get_local_ip()
+        self._host = host or get_local_ip()
         self._zc: Optional[Zeroconf] = None
         self._info: Optional[ServiceInfo] = None
 
     def announce(
         self,
         control_port: int = ZMQ_CONTROL_PORT,
-        weight_port: int  = ZMQ_WEIGHT_PORT,
+        weight_port: int = ZMQ_WEIGHT_PORT,
         pipeline_port: int = ZMQ_PIPELINE_PORT,
     ):
         self._zc = Zeroconf()
         service_name = f"{self._device_id}.{ZEROCONF_SERVICE_TYPE}"
         props = {
-            "device_id":    self._device_id,
-            "control_port": str(control_port),
-            "weight_port":  str(weight_port),
+            "device_id":     self._device_id,
+            "control_port":  str(control_port),
+            "weight_port":   str(weight_port),
             "pipeline_port": str(pipeline_port),
-            "version":      "2",
+            "version":       "2",
         }
         self._info = ServiceInfo(
             type_=ZEROCONF_SERVICE_TYPE,
