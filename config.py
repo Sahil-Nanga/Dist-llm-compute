@@ -44,7 +44,7 @@ DEFAULT_TOP_K: int            = 40
 
                                                                                
                                                                          
-RAM_SAFETY_MARGIN: float = 0.65
+RAM_SAFETY_MARGIN: float = 0.75
 
 RAM_OVERHEAD_BYTES: int = 2_048 * 1024 * 1024
 

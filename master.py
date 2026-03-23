@@ -407,6 +407,7 @@ async def _deploy_task():
                 "layer_indices": layers,
                 "n_heads":       meta.n_heads,
                 "n_kv_heads":    meta.n_kv_heads,
+                "rope_freq_base": meta.rope_freq_base,
             })
             log.info("Streaming %d layers to %s...", len(layers), dev_id)
 
@@ -445,6 +446,7 @@ async def _deploy_task():
                 weights_list=master_weights_list,
                 n_heads=meta.n_heads,
                 n_kv_heads=meta.n_kv_heads,
+                rope_freq_base=meta.rope_freq_base,
             )
             log.info("Master engine ready: layers %d-%d", master_layers[0], master_layers[-1])
 
@@ -578,7 +580,7 @@ async def _generate_stream(req: GenerateRequest):
             generated_tokens.append(next_id)
             yield {"token_id": next_id, "token_text": tok.decode_token(next_id)}
 
-            if next_id == eos_token:
+            if next_id == eos_token or next_id == 128009:
                 break
 
             token_ids_np = np.array([[next_id]], dtype=np.int64)

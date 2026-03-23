@@ -49,28 +49,24 @@ class GGUFValueType:
                                                     
                                             
 GGUF_QUANT_SIZES: Dict[int, Tuple[int, int]] = {
-    0:  (1,  4),         
-    1:  (1,  2),         
-    2:  (32, 18),         
-    3:  (32, 20),         
-    6:  (32, 22),         
-    7:  (32, 24),         
-    8:  (32, 34),         
-    9:  (1,  1),                   
-    10: (256, 82),        
-    11: (256, 110),         
-    12: (256, 144),         
-    13: (256, 160),                        
-    14: (256, 176),         
-    15: (256, 192),         
-    16: (256, 210),       
-    17: (256, 272),       
-    18: (256, 36),           
-    19: (256, 40),          
-    20: (256, 54),           
+    0:  (1,   4),
+    1:  (1,   2),
+    2:  (32,  18),
+    3:  (32,  20),
+    6:  (32,  22),
+    7:  (32,  24),
+    8:  (32,  34),
+    9:  (1,   1),
+    10: (256, 82),
+    11: (256, 110),
+    12: (256, 144),  
+    13: (256, 176),  
+    14: (256, 210),  
+    15: (256, 272),  
+    16: (256, 36),   
+    17: (256, 40),   
+    18: (256, 54),   
 }
-
-
                                                                                 
 
 @dataclasses.dataclass
@@ -88,7 +84,8 @@ class GGUFMetadata:
     n_tensors: int
     dominant_quant_type: int                                                
     bytes_per_layer: int                                                       
-    total_weight_bytes: int                                                  
+    total_weight_bytes: int
+    rope_freq_base: float                                                  
 
     def __repr__(self) -> str:
         return (
@@ -382,6 +379,7 @@ class GGUFParser:
         bpl          = self._calculate_bytes_per_layer(
                            arch, emb_dim, inter_dim, n_heads, n_kv_heads, quant_type)
         total_bytes  = self._total_weight_bytes()
+        rope_base    = float(self._get_kv(f"{arch}.rope.freq_base", default=10000.0))
 
         return GGUFMetadata(
             path=str(self.path),
@@ -397,6 +395,7 @@ class GGUFParser:
             dominant_quant_type=quant_type,
             bytes_per_layer=bpl,
             total_weight_bytes=total_bytes,
+            rope_freq_base=rope_base,
         )
 
 
@@ -457,18 +456,26 @@ class LayerAssigner:
         n_layers    = self.meta.n_layers
         assignment: Dict[str, List[int]] = {d: [] for d in self.devices}
 
-                                                                                 
-                                                                                 
         def sort_key(dev_id: str) -> Tuple[int, int]:
             priority = 0 if dev_id == "master" else 1
             return (priority, -self.devices[dev_id].usable_ram_bytes)
 
         ordered_devices = sorted(self.devices.keys(), key=sort_key)
 
-                                                        
         remaining: Dict[str, int] = {
             d: self.devices[d].usable_ram_bytes for d in ordered_devices
         }
+
+        if "master" in remaining:
+            vocab_elems = self.meta.vocab_size * self.meta.embedding_dim
+            non_layer_bytes = vocab_elems * 4
+            
+            remaining["master"] -= non_layer_bytes
+            
+            log.info(
+                "Reserved %.1f MiB on master for embedding/output matrices", 
+                non_layer_bytes / (1024**2)
+            )
 
         unassigned: List[int] = []
         dev_iter = iter(ordered_devices)
@@ -476,7 +483,6 @@ class LayerAssigner:
 
         for layer_idx in range(n_layers):
             placed = False
-                                                                             
             while current_dev is not None:
                 if remaining[current_dev] >= bpl:
                     assignment[current_dev].append(layer_idx)
@@ -484,14 +490,12 @@ class LayerAssigner:
                     placed = True
                     break
                 else:
-                                            
                     current_dev = next(dev_iter, None)
 
             if not placed:
                 unassigned.append(layer_idx)
                 log.warning("Layer %d could not be assigned — insufficient RAM on all devices", layer_idx)
 
-                                                                               
         pipeline_order = [d for d in ordered_devices if assignment[d]]
 
         return LayerAssignment(
@@ -500,10 +504,7 @@ class LayerAssigner:
             model_metadata=self.meta,
             unassigned_layers=unassigned,
             pipeline_order=pipeline_order,
-        )
-
-
-                                                                                
+        )                                                                        
 
 def parse_model(model_path: str) -> GGUFMetadata:
     """Parse GGUF metadata. Raises ValueError for non-GGUF files."""

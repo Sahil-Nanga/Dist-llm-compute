@@ -204,7 +204,6 @@ class PipelineChannel:
         meta = json.loads(frames[2])
         return request_id, tensor, meta
 
-
 class WeightChannel:
     def __init__(self, zmq_ctx: ZMQContext):
         self._ctx = zmq_ctx
@@ -223,21 +222,27 @@ class WeightChannel:
         self._push.connect(f"tcp://{host}:{port}")
         log.info("Weight sender connected to %s:%d", host, port)
 
-    def send_layers(self, layer_indices: List[int], weights: List[Dict[str, np.ndarray]]):
+    def send_layers(self, layer_indices: List[int], weights: List[Dict[str, Any]]):
         names, dtypes, shapes = [], [], []
         raw_frames = []
+        metadata = {}  # Store non-numpy items (like __shape__ and __qtype__)
+        
         for w in weights:
             for name, arr in w.items():
-                names.append(name)
-                dtypes.append(arr.dtype.str)
-                shapes.append(list(arr.shape))
-                raw_frames.append(arr.tobytes())
+                if isinstance(arr, np.ndarray):
+                    names.append(name)
+                    dtypes.append(arr.dtype.str)
+                    shapes.append(list(arr.shape))
+                    raw_frames.append(arr.tobytes())
+                else:
+                    metadata[name] = arr
 
         header = json.dumps({
             "layer_indices": layer_indices,
             "tensor_names":  names,
             "tensor_dtypes": dtypes,
             "tensor_shapes": shapes,
+            "metadata":      metadata,
         }).encode()
 
         self._push.send_multipart([header] + raw_frames)
@@ -245,7 +250,7 @@ class WeightChannel:
         log.info("  -> layers %s  %.1f MiB  (%d tensors)",
                  layer_indices, total_mib, len(raw_frames))
 
-    def recv_layers(self, timeout_ms: int = 300_000) -> Tuple[List[int], List[Dict[str, np.ndarray]]]:
+    def recv_layers(self, timeout_ms: int = 300_000) -> Tuple[List[int], List[Dict[str, Any]]]:
         if self._pull.poll(timeout_ms) == 0:
             raise TimeoutError("Weight recv timed out waiting for master")
 
@@ -256,8 +261,9 @@ class WeightChannel:
         names = header["tensor_names"]
         dtypes = header["tensor_dtypes"]
         shapes = header["tensor_shapes"]
+        metadata = header.get("metadata", {})
 
-        flat: Dict[str, np.ndarray] = {}
+        flat: Dict[str, Any] = {}
         for i, name in enumerate(names):
             raw = frames[i + 1]
             dt = np.dtype(dtypes[i])
@@ -268,21 +274,29 @@ class WeightChannel:
                 arr = np.frombuffer(raw, dtype=dt).copy()
             flat[name] = arr
 
-        per_layer: Dict[int, Dict[str, np.ndarray]] = {li: {} for li in layer_indices}
-        for name, arr in flat.items():
+        # Merge the metadata back in
+        flat.update(metadata)
+
+        per_layer: Dict[int, Dict[str, Any]] = {li: {} for li in layer_indices}
+        for name, val in flat.items():
+            assigned = False
             for li in layer_indices:
-                if name.startswith(f"blk.{li}."):
-                    per_layer[li][name] = arr
+                if f"blk.{li}." in name:
+                    per_layer[li][name] = val
+                    assigned = True
                     break
-            else:
-                per_layer[layer_indices[0]][name] = arr
+            if not assigned:
+                per_layer[layer_indices[0]][name] = val
 
         result = [per_layer[li] for li in layer_indices]
-        total_mib = sum(a.nbytes for w in result for a in w.values()) / (1024 ** 2)
+        
+        # Calculate MiB using only the numpy arrays
+        total_mib = sum(
+            a.nbytes for w in result for a in w.values() if isinstance(a, np.ndarray)
+        ) / (1024 ** 2)
+        
         log.info("Received weights for layers: %s  (%.1f MiB)", layer_indices, total_mib)
         return layer_indices, result
-
-
 @dataclass
 class WorkerServiceInfo:
     name: str

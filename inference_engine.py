@@ -13,7 +13,6 @@ from backend import rms_norm, silu, softmax, quantized_matmul, _USE_TORCH as _BA
 
 log.info("Inference backend: %s", "PyTorch" if _BACKEND_TORCH else "NumPy")
 
-
 QUANT_SIZES: Dict[int, Tuple[int, int]] = {
     0:  (1,   4),
     1:  (1,   2),
@@ -25,25 +24,46 @@ QUANT_SIZES: Dict[int, Tuple[int, int]] = {
     9:  (1,   1),
     10: (256, 82),
     11: (256, 110),
-    12: (256, 144),
-    13: (256, 160),
-    14: (256, 176),
-    15: (256, 192),
-    16: (256, 210),
-    17: (256, 272),
-    18: (256, 36),
-    19: (256, 40),
-    20: (256, 54),
+    12: (256, 144),  
+    13: (256, 176), 
+    14: (256, 210), 
+    15: (256, 272),
+    16: (256, 36), 
+    17: (256, 40),   
+    18: (256, 54),   
 }
-
 QUANT_TYPE_NAMES = {
     0:"F32", 1:"F16", 2:"Q4_0", 3:"Q4_1", 6:"Q5_0", 7:"Q5_1",
     8:"Q8_0", 10:"Q2_K", 11:"Q3_K", 12:"Q4_K_S", 13:"Q4_K_M",
     14:"Q5_K_S", 15:"Q5_K_M", 16:"Q6_K", 17:"Q8_K",
 }
 
-
-# ─── QuantizedWeight — stores raw bytes, dequantizes on demand ────────────────
+def _chunked_dequantize(raw_bytes: np.ndarray, qt_id: int) -> np.ndarray:
+    """Dequantizes massive arrays in chunks to prevent 3GB+ float32 RAM spikes."""
+    from gguf.quants import dequantize
+    from gguf import GGMLQuantizationType
+    qt = GGMLQuantizationType(qt_id)
+    
+    block_size, bytes_per_block = QUANT_SIZES.get(qt_id, (1, 4))
+    n_blocks = len(raw_bytes) // bytes_per_block
+    total_elems = n_blocks * block_size
+    
+    result_f16 = np.zeros(total_elems, dtype=np.float16)
+    
+    chunk_blocks = 100_000 
+    for i in range(0, n_blocks, chunk_blocks):
+        blk_end = min(i + chunk_blocks, n_blocks)
+        b_start, b_end = i * bytes_per_block, blk_end * bytes_per_block
+        e_start, e_end = i * block_size,      blk_end * block_size
+        
+        chunk_f32 = dequantize(raw_bytes[b_start:b_end], qt)
+        
+        np.clip(chunk_f32, -65504.0, 65504.0, out=chunk_f32)
+        result_f16[e_start:e_end] = chunk_f32.astype(np.float16)
+        
+        del chunk_f32
+        
+    return result_f16
 
 class QuantizedWeight:
     """
@@ -113,7 +133,6 @@ def _wrap_weight(arr: np.ndarray, name: str = "", shape: tuple = ()) -> Optional
 
 
 
-# ─── RoPE cache ───────────────────────────────────────────────────────────────
 
 def _build_rope_cache(seq_len: int, head_dim: int,
                       base: float = 10000.0) -> Tuple[np.ndarray, np.ndarray]:
@@ -132,7 +151,6 @@ def apply_rope(x: np.ndarray, cos: np.ndarray, sin: np.ndarray) -> np.ndarray:
     return np.concatenate([x1 * c - x2 * s, x1 * s + x2 * c], axis=-1)
 
 
-# ─── Transformer block ────────────────────────────────────────────────────────
 
 class TransformerBlock:
     """
@@ -305,8 +323,8 @@ class EmbeddingLayer:
                 from gguf.quants import dequantize
                 from gguf import GGMLQuantizationType
                 qt_id  = weights.get("__qtype__token_embd.weight", 13)
-                qt     = GGMLQuantizationType(qt_id)
-                emb    = dequantize(emb, qt)
+                log.info("Dequantizing token_embd in chunks to save RAM...")
+                emb    = _chunked_dequantize(emb, qt_id)
             except Exception as e:
                 log.warning("dequantize failed (%s); using zero-fill fallback", e)
                 n_elems = 1
@@ -344,7 +362,8 @@ class OutputLayer:
                 from gguf.quants import dequantize
                 from gguf import GGMLQuantizationType
                 qt_id = weights.get("__qtype__output.weight", 13)
-                head  = dequantize(head, GGMLQuantizationType(qt_id)).astype(np.float32)
+                log.info("Dequantizing output.weight in chunks to save RAM...")
+                head  = _chunked_dequantize(head, qt_id)
             except Exception as e:
                 log.warning("output.weight dequantize failed (%s); zero-fill fallback", e)
                 gguf_shape = weights.get("__shape__output.weight")
@@ -387,7 +406,7 @@ class OutputLayer:
 
 class LayerRangeEngine:
     def __init__(self, layer_indices: List[int], weights_list: List[Dict[str, np.ndarray]],
-                 n_heads: int, n_kv_heads: int):
+                 n_heads: int, n_kv_heads: int,rope_freq_base: float = 10000.0):
         assert len(layer_indices) == len(weights_list)
         self.layer_indices = layer_indices
         self.blocks = [

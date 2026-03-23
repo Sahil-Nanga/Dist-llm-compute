@@ -1,0 +1,943 @@
+INFO:     Started server process [263333]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34026 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34036 - "GET /api/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "POST /api/discover HTTP/1.1" 200 OK
+23:06:04  [INFO   ]  networking - Started mDNS browsing for _llmdist._tcp.local.
+23:06:04  [INFO   ]  networking - Discovered worker: sahilns-MacBook-Air-local @ 172.30.238.104:5555
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51294 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+23:06:19  [INFO   ]  networking - Discovery complete. Found 1 worker(s).
+23:06:19  [INFO   ]  networking - Control channel connected to tcp://172.30.238.104:5555
+23:06:19  [INFO   ]  master - Worker sahilns-MacBook-Air-local: 7.3 GiB available
+23:06:19  [INFO   ]  networking - Weight sender connected to 172.30.238.104:5556
+23:06:19  [INFO   ]  master - Discovery complete. Workers: ['sahilns-MacBook-Air-local']
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:23  [INFO   ]  profiler - Parsed model: GGUFMetadata(arch=llama, layers=32, emb=4096, heads=32, bytes_per_layer=117.0 MiB)
+23:06:23  [INFO   ]  profiler - Reserved 2004.0 MiB on master for embedding/output matrices
+23:06:23  [INFO   ]  profiler - 
+Layer Assignment Summary:
+  [master] layers 0–19 (20 blocks, ~2340.6 MiB)
+  [sahilns-MacBook-Air-local] layers 20–31 (12 blocks, ~1404.4 MiB)
+23:06:23  [INFO   ]  master - Tokenizer loaded: GGUFTokenizer(type='gpt2', vocab_size=128256, bos=128000, eos=128009, chat_template=yes)
+INFO:     127.0.0.1:48242 - "POST /api/load-model HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "POST /api/deploy HTTP/1.1" 200 OK
+23:06:26  [INFO   ]  master - Building GGUF tensor index...
+23:06:27  [INFO   ]  gguf_loader - GGUFIndex: 292 tensors indexed
+23:06:27  [INFO   ]  master - Index ready: 292 tensors
+23:06:27  [INFO   ]  master - Streaming 12 layers to sahilns-MacBook-Air-local...
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:06:27  [INFO   ]  gguf_loader - Layer 20: 27 tensors, 117.0 MiB
+23:06:27  [INFO   ]  master -   layer 1/12 -> sahilns-MacBook-Air-local (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:28  [INFO   ]  networking -   -> layers [20]  117.0 MiB  (9 tensors)
+23:06:28  [INFO   ]  gguf_loader - Layer 21: 27 tensors, 132.5 MiB
+23:06:28  [INFO   ]  master -   layer 2/12 -> sahilns-MacBook-Air-local (132 MiB)
+23:06:28  [INFO   ]  gguf_loader - Layer 22: 27 tensors, 117.0 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:33  [INFO   ]  networking -   -> layers [21]  132.5 MiB  (9 tensors)
+23:06:33  [INFO   ]  master -   layer 3/12 -> sahilns-MacBook-Air-local (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41334 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:06:34  [INFO   ]  gguf_loader - Layer 23: 27 tensors, 117.0 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52898 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:43  [INFO   ]  networking -   -> layers [22]  117.0 MiB  (9 tensors)
+23:06:43  [INFO   ]  master -   layer 4/12 -> sahilns-MacBook-Air-local (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:06:43  [INFO   ]  gguf_loader - Layer 24: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38520 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:52  [INFO   ]  networking -   -> layers [23]  117.0 MiB  (9 tensors)
+23:06:52  [INFO   ]  master -   layer 5/12 -> sahilns-MacBook-Air-local (132 MiB)
+23:06:52  [INFO   ]  gguf_loader - Layer 25: 27 tensors, 117.0 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38522 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:06:59  [INFO   ]  networking -   -> layers [24]  132.5 MiB  (9 tensors)
+23:06:59  [INFO   ]  master -   layer 6/12 -> sahilns-MacBook-Air-local (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:06:59  [INFO   ]  gguf_loader - Layer 26: 27 tensors, 117.0 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49376 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:07  [INFO   ]  networking -   -> layers [25]  117.0 MiB  (9 tensors)
+23:07:07  [INFO   ]  master -   layer 7/12 -> sahilns-MacBook-Air-local (117 MiB)
+23:07:07  [INFO   ]  gguf_loader - Layer 27: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43514 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:15  [INFO   ]  networking -   -> layers [26]  117.0 MiB  (9 tensors)
+23:07:15  [INFO   ]  master -   layer 8/12 -> sahilns-MacBook-Air-local (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:16  [INFO   ]  gguf_loader - Layer 28: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48920 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:22  [INFO   ]  networking -   -> layers [27]  132.5 MiB  (9 tensors)
+23:07:22  [INFO   ]  master -   layer 9/12 -> sahilns-MacBook-Air-local (132 MiB)
+23:07:23  [INFO   ]  gguf_loader - Layer 29: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:30  [INFO   ]  networking -   -> layers [28]  132.5 MiB  (9 tensors)
+23:07:30  [INFO   ]  master -   layer 10/12 -> sahilns-MacBook-Air-local (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42940 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:30  [INFO   ]  gguf_loader - Layer 30: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42942 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:38  [INFO   ]  networking -   -> layers [29]  132.5 MiB  (9 tensors)
+23:07:38  [INFO   ]  master -   layer 11/12 -> sahilns-MacBook-Air-local (132 MiB)
+23:07:39  [INFO   ]  gguf_loader - Layer 31: 27 tensors, 132.5 MiB
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:45  [INFO   ]  networking -   -> layers [30]  132.5 MiB  (9 tensors)
+23:07:45  [INFO   ]  master -   layer 12/12 -> sahilns-MacBook-Air-local (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32936 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:53  [INFO   ]  networking -   -> layers [31]  132.5 MiB  (9 tensors)
+23:07:53  [INFO   ]  master - All layers sent to sahilns-MacBook-Air-local
+23:07:53  [INFO   ]  master - Loading 20 master layers...
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:53  [INFO   ]  gguf_loader - Layer 0: 27 tensors, 132.5 MiB
+23:07:53  [INFO   ]  master -   master layer 1/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36864 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:07:54  [INFO   ]  gguf_loader - Layer 1: 27 tensors, 132.5 MiB
+23:07:54  [INFO   ]  master -   master layer 2/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:54  [INFO   ]  gguf_loader - Layer 2: 27 tensors, 132.5 MiB
+23:07:54  [INFO   ]  master -   master layer 3/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:55  [INFO   ]  gguf_loader - Layer 3: 27 tensors, 132.5 MiB
+23:07:55  [INFO   ]  master -   master layer 4/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:07:55  [INFO   ]  gguf_loader - Layer 4: 27 tensors, 117.0 MiB
+23:07:55  [INFO   ]  master -   master layer 5/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:56  [INFO   ]  gguf_loader - Layer 5: 27 tensors, 117.0 MiB
+23:07:56  [INFO   ]  master -   master layer 6/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:56  [INFO   ]  gguf_loader - Layer 6: 27 tensors, 132.5 MiB
+23:07:56  [INFO   ]  master -   master layer 7/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:57  [INFO   ]  gguf_loader - Layer 7: 27 tensors, 117.0 MiB
+23:07:57  [INFO   ]  master -   master layer 8/20 loaded (117 MiB)
+23:07:57  [INFO   ]  gguf_loader - Layer 8: 27 tensors, 117.0 MiB
+23:07:57  [INFO   ]  master -   master layer 9/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:58  [INFO   ]  gguf_loader - Layer 9: 27 tensors, 117.0 MiB
+23:07:58  [INFO   ]  master -   master layer 10/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:58  [INFO   ]  gguf_loader - Layer 10: 27 tensors, 132.5 MiB
+23:07:58  [INFO   ]  master -   master layer 11/20 loaded (132 MiB)
+23:07:59  [INFO   ]  gguf_loader - Layer 11: 27 tensors, 117.0 MiB
+23:07:59  [INFO   ]  master -   master layer 12/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:07:59  [INFO   ]  gguf_loader - Layer 12: 27 tensors, 117.0 MiB
+23:07:59  [INFO   ]  master -   master layer 13/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:00  [INFO   ]  gguf_loader - Layer 13: 27 tensors, 132.5 MiB
+23:08:00  [INFO   ]  master -   master layer 14/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:00  [INFO   ]  gguf_loader - Layer 14: 27 tensors, 117.0 MiB
+23:08:00  [INFO   ]  master -   master layer 15/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:01  [INFO   ]  gguf_loader - Layer 15: 27 tensors, 117.0 MiB
+23:08:01  [INFO   ]  master -   master layer 16/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:01  [INFO   ]  gguf_loader - Layer 16: 27 tensors, 132.5 MiB
+23:08:01  [INFO   ]  master -   master layer 17/20 loaded (132 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:02  [INFO   ]  gguf_loader - Layer 17: 27 tensors, 117.0 MiB
+23:08:02  [INFO   ]  master -   master layer 18/20 loaded (117 MiB)
+23:08:02  [INFO   ]  gguf_loader - Layer 18: 27 tensors, 117.0 MiB
+23:08:02  [INFO   ]  master -   master layer 19/20 loaded (117 MiB)
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:03  [INFO   ]  gguf_loader - Layer 19: 27 tensors, 132.5 MiB
+23:08:03  [INFO   ]  master -   master layer 20/20 loaded (132 MiB)
+23:08:03  [INFO   ]  inference_engine - LayerRangeEngine ready: layers 0..19 (20 blocks, 2479.2 MiB quantized)
+23:08:03  [INFO   ]  master - Master engine ready: layers 0-19
+23:08:03  [INFO   ]  master - Loading embedding weights...
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+23:08:04  [INFO   ]  gguf_loader - GGUFIndex: 292 tensors indexed
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:05  [INFO   ]  gguf_loader - Embedding token_embd.weight shape=(4096, 128256) qtype=12
+23:08:05  [INFO   ]  inference_engine - Dequantizing token_embd in chunks to save RAM...
+23:08:18  [INFO   ]  inference_engine - EmbeddingLayer: vocab=128256  hidden=4096  (1002.0 MiB)
+23:08:18  [INFO   ]  master - Loading output weights...
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+23:08:18  [INFO   ]  gguf_loader - GGUFIndex: 292 tensors indexed
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+23:08:18  [INFO   ]  gguf_loader - Output output_norm.weight shape=(4096,) qtype=0
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+23:08:20  [INFO   ]  gguf_loader - Output output.weight shape=(4096, 128256) qtype=14
+23:08:20  [INFO   ]  inference_engine - Dequantizing output.weight in chunks to save RAM...
+23:08:32  [INFO   ]  inference_engine - OutputLayer: vocab=128256  hidden=4096  (1002.0 MiB)
+23:08:32  [INFO   ]  networking - Pipeline INPUT bound on port 5558
+23:08:32  [INFO   ]  networking - Pipeline OUTPUT connected to 172.30.238.104:5557
+23:08:32  [INFO   ]  master - Pipeline wired: master -> sahilns-MacBook-Air-local
+23:08:32  [INFO   ]  master - Deployment complete. Pipeline: ['master', 'sahilns-MacBook-Air-local']
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43810 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43820 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43806 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48902 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48242 - "POST /api/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43178 - "GET /api/workers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38774 - "GET /api/layer-assignment HTTP/1.1" 200 OK

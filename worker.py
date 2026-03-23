@@ -151,6 +151,7 @@ class WorkerNode:
         layer_indices   = payload["layer_indices"]
         self._n_heads    = payload.get("n_heads",    32)
         self._n_kv_heads = payload.get("n_kv_heads", 32)
+        rope_freq_base   = payload.get("rope_freq_base", 10000.0)
 
         self._ctrl.send_ack({
             "status": "ready_for_weights",
@@ -170,6 +171,7 @@ class WorkerNode:
             weights_list=weights_list,
             n_heads=self._n_heads,
             n_kv_heads=self._n_kv_heads,
+            rope_freq_base=rope_freq_base,
         )
         log.info("✓ Weights loaded. Engine ready for layers %s–%s.",
                  recv_indices[0], recv_indices[-1])
